@@ -11,7 +11,7 @@ type Todo struct {
 	ID    int    `jason:"id"`
 	Title string `json:"title"`
 	Done  bool   `json:"done"`
-	Body  string `json:"body"`
+	Body  int    `json:"body"`
 }
 
 func main() {
