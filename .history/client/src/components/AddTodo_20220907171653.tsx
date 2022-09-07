@@ -1,21 +1,20 @@
-import { useState } from "react";
-import { useForm } from '@mantine/form';
-import { Button, Modal, Group, TextInput, Textarea } from "@mantine/core";
+import React, { useState } from 'react'
+import { useForm } from '@mantine/form'
+import { Group, Modal, Button, TextInput, Textarea } from '@mantine/core'
+
 import { ENDPOINT } from "../App";
 import { KeyedMutator } from "swr";
 
-//import todo component from app ^
-//add todo component to keyed mutator brackets <[]>
 
-function AddTodo({ mutate }: { mutate: KeyedMutator<[]> }) {
-  const [open, setOpen] = useState(false);
+function AddTodo() {
+  const [open, setOpen] = useState(false)
 
   const form = useForm({
     initialValues: {
-      title: "",
-      body: "",
+      title: '',
+      body: '',
     },
-  });
+  })
 
   async function createTodo(values: { title: string; body: string }) {
     const updated = await fetch(`${ENDPOINT}/api/todos`, {
@@ -30,7 +29,6 @@ function AddTodo({ mutate }: { mutate: KeyedMutator<[]> }) {
     form.reset();
     setOpen(false);
   }
-
   return (
     <>
       <Modal opened={open} onClose={() => setOpen(false)} title="Create todo">
@@ -50,17 +48,17 @@ function AddTodo({ mutate }: { mutate: KeyedMutator<[]> }) {
             {...form.getInputProps("body")}
           />
 
-          <Button type="submit">Create todo</Button>
+          <Button type="submit">Add Todo</Button>
         </form>
       </Modal>
 
       <Group position="center">
         <Button fullWidth mb={12} onClick={() => setOpen(true)}>
-          ADD TODO
+          Add Todo
         </Button>
-      </Group>
+      </Group>  
     </>
-  );
+  )
 }
 
-export default AddTodo;
+export default AddTodo
